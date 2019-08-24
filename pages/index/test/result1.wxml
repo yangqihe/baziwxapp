@@ -1,0 +1,59 @@
+
+<view>
+  <!-- <template is="head" data="{{title: 'text'}}"/> -->
+
+  
+    
+      <text>{{text}}</text>
+    
+  
+
+  <!-- <template is="foot" /> -->
+</view>
+
+
+
+<!-- 
+
+<view class="container">     
+  <view class="page-body">
+
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生肖</view>
+          </view>
+          <view class="weui-cell__bd">
+              <view class="weui-textarea">{{animals}}91980129081290219219219-0219-201-0921-0210-210-210-120-210-210-120-1292909021902190920190219022192019021902190219090129021</view>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生肖</view>
+          </view>
+          <view class="weui-cell__bd">
+              <view class="weui-textarea">{{animals}}91980129081290219219219-0219-201-0921-0210-210-210-120-210-210-120-1292909021902190920190219022192019021902190219090129021</view>
+          </view>
+        </view>
+      </view>
+
+
+            <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">生肖</view>
+          </view>
+          <view class="weui-cell__bd">
+              <view class="weui-textarea">{{animals}}91980129081290219219219-0219-201-0921-0210-210-210-120-210-210-120-1292909021902190920190219022192019021902190219090129021</view>
+          </view>
+        </view>
+      </view>
+
+  </view>
+</view>
+ -->
