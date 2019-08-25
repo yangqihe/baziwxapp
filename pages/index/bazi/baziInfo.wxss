@@ -1,0 +1,2 @@
+/* pages/index/bazi/baziInfo.wxss */
+@import "../../common/lib/weui.wxss";

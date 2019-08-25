@@ -1,10 +1,10 @@
 Page({
-  onShareAppMessage() {
-    return {
-      title: 'picker',
-      path: 'page/component/pages/picker/picker'
-    }
-  },
+  // onShareAppMessage() {
+  //   return {
+  //     title: 'picker',
+  //     path: 'page/component/pages/picker/picker'
+  //   }
+  // },
 
   data: {
     form: {
@@ -41,6 +41,10 @@ Page({
     })
   },
 
+  wxopenAction(){
+    console.log("####### wxopenAction ########");
+  },
+
   formSubmit(e) {
     const params = e.detail.value;
     console.log("#######"+params+"########");
@@ -75,15 +79,15 @@ Page({
       },
       success: function (res) {
         if (res.statusCode == 200) {
-          console.log(res.data);
+          //console.log(res.data);
           if (res.data.isSuccess) {
             wx.setStorage({
               key: 'info',
               data: res.data,
-            })
-            //wx.getStorageSync('info');
+            });
+            var jsonData = JSON.stringify(res.data.result);
             wx.navigateTo({
-              url: 'test/result1',
+              url: 'bazi/baziInfo?jsonData=' + jsonData,
             });
           } else {
             wx.showModal({ content: res.data, showCancel: false });

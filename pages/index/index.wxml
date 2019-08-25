@@ -8,10 +8,10 @@
        </view> -->
       <!-- <view class="weui-cell weui-cell_input">
  </view> -->
-      
 
 
-            <view class="page-section">
+
+      <view class="page-section">
         <!-- <view class="weui-cells__title">选择出生日期</view> -->
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
@@ -19,8 +19,8 @@
               <view class="weui-label">姓名</view>
             </view>
             <view class="weui-cell__bd">
-        <input class="weui-input" name="xingming" placeholder="请输入姓名" />
-      </view>
+              <input class="weui-input" name="xingming" placeholder="请输入姓名" />
+            </view>
           </view>
         </view>
       </view>
@@ -31,7 +31,7 @@
           <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
 
             <view class="weui-cell__hd">
-              <radio value="{{item.value}}" checked="{{item.checked}}"/>
+              <radio value="{{item.value}}" checked="{{item.checked}}" />
             </view>
             <view class="weui-cell__bd">{{item.name}}</view>
           </label>
@@ -73,6 +73,10 @@
       <view class="weui-cells__title"> </view>
       <view class="weui-cells__title"> </view>
       <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
 
       <view class="weui-cells weui-cells_after-title">
         <view class="btn-area">
@@ -82,6 +86,15 @@
 
 
 
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <!-- <button class="mini-btn" type="primary" size="mini" bindtap="wxopenAction">测面相</button> -->
 
 
 
@@ -89,3 +102,5 @@
   </form>
 
 </view>
+
+<official-account></official-account>

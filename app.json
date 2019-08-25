@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/index/test/picker",
-    "pages/index/test/result1"
+    "pages/index/test/result1",
+    "pages/index/bazi/baziInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
