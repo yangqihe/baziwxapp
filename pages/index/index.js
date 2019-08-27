@@ -1,29 +1,83 @@
-Page({
-  // onShareAppMessage() {
-  //   return {
-  //     title: 'picker',
-  //     path: 'page/component/pages/picker/picker'
-  //   }
-  // },
+const app = getApp();
 
+Page({
   data: {
     form: {
       gender: '',
       xingming: '',
       riTime: '',
-      shiTime: ''
+      shiTime: '',
+      hasUserInfo: false,
+      canIUse: wx.canIUse('button.open-type.getUserInfo'),
+      code: ''
     },
-    items: [
-      { value: 'M', name: '男', checked: 'true' },
-      { value: 'W', name: '女' },
-    ],
+    items: [{ value: 'M', name: '男', checked: 'true' },{ value: 'W', name: '女' }],
     index: 0,
     date: '1990-06-01',
-    time: '12:01'
+    time: '12:01',
+    code:''
+  },
+
+  onLoad:function(){
+    wx.setEnableDebug({
+      enableDebug: true
+    });
+
+    wx.login({
+      success: function (res) {
+        //有问题
+        // this.setData({
+        //   code:res.code
+        // });
+        console.log("#####res.code#####" + res.code);
+        /*
+        wx.request({
+          url: 'https://www.see-source.com/weixinpay/GetOpenId',
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: { 'code': res.code },
+          success: function (res) {
+            var openId = res.data.openid;
+            that.xiadan(openId);
+          }
+        });
+        */
+
+      }
+    });
+    
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      });
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        });
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      });
+    }
   },
 
   bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    //console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
     })
@@ -65,13 +119,14 @@ Page({
     wx.showLoading({
       title: '正在提交，请稍后...',
     });
-    wx.request({
-      url: "https://m.yangqihe.com/love-mobile-web/home/getBaZiInfo",//?xingming=test&riTime=1978-07-08&shiTime=12:01
+    wx.request({//https://m.yangqihe.com
+      url: "localhost:8080/love-mobile-web/home/getBaZiInfo",//?xingming=test&riTime=1978-07-08&shiTime=12:01
       data: {
         xingming: params.xingming,
         gender:params.gender,
         riTime: params.riTime,
-        shiTime: params.shiTime
+        shiTime: params.shiTime,
+        code:params.code,
       },
       method: 'POST',
       header: {
@@ -91,9 +146,6 @@ Page({
             });
           } else {
             wx.showModal({ content: res.data, showCancel: false });
-            // wx.navigateTo({
-            //   url: 'result',
-            // });
           }
         } else {
           wx.showModal({ content: "连接服务器失败,请稍后重试", showCancel: false });

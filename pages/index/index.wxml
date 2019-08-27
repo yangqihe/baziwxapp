@@ -1,18 +1,21 @@
-<view class="container">
+<!-- <view class="container"> -->
+
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
 
   <form catchsubmit="formSubmit" catchreset="formReset">
     <view class="page-body">
 
-      <!-- <view class="weui-cells__title"></view> -->
-      <!-- <view class="weui-cells weui-cells_after-title">
-       </view> -->
-      <!-- <view class="weui-cell weui-cell_input">
- </view> -->
-
-
 
       <view class="page-section">
-        <!-- <view class="weui-cells__title">选择出生日期</view> -->
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
@@ -25,9 +28,9 @@
         </view>
       </view>
 
-
+<!-- bindchange="radioChange" -->
       <view class="weui-cells weui-cells_after-title">
-        <radio-group bindchange="radioChange" name='gender'>
+        <radio-group name='gender'>
           <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
 
             <view class="weui-cell__hd">
@@ -54,7 +57,6 @@
         </view>
       </view>
 
-      <!-- <view class="weui-cells__title">选择出生时间</view> -->
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__hd">
@@ -96,11 +98,9 @@
       <view class="weui-cells__title"> </view>
       <!-- <button class="mini-btn" type="primary" size="mini" bindtap="wxopenAction">测面相</button> -->
 
-
-
     </view>
   </form>
 
-</view>
+<!-- </view> -->
 
 <official-account></official-account>
