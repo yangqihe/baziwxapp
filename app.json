@@ -1,8 +1,13 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/face/faceIndex",
+    
+    "pages/bazi/baziIndex",
+    "pages/bazi/baziPaipan",
+    
     "pages/index/test/picker",
     "pages/index/test/result1",
+    "pages/index/index",
     "pages/index/bazi/baziInfo"
   ],
   "window": {

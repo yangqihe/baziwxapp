@@ -1,0 +1,106 @@
+<!-- <view class="container"> -->
+
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+
+  <form catchsubmit="formSubmit" catchreset="formReset">
+    <view class="page-body">
+
+
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+              <input class="weui-input" name="xingming" placeholder="请输入姓名" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+<!-- bindchange="radioChange" -->
+      <view class="weui-cells weui-cells_after-title">
+        <radio-group name='gender'>
+          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
+
+            <view class="weui-cell__hd">
+              <radio value="{{item.value}}" checked="{{item.checked}}" />
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+          </label>
+        </radio-group>
+      </view>
+
+      <view class="page-section">
+        <!-- <view class="weui-cells__title">选择出生日期</view> -->
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+              <view class="weui-label">出生日期</view>
+            </view>
+            <view class="weui-cell__bd">
+              <picker mode="date" name="riTime" value="{{date}}" start="1900-00-01" end="2019-00-01" bindchange="bindDateChange" value="1990-06-06">
+                <view class="weui-input">{{date}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">出生时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="time" name="shiTime" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+              <view class="weui-input">{{time}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+
+      <view class="weui-cells weui-cells_after-title">
+        <view class="btn-area">
+          <button type="primary" formType="submit">提交</button>
+        </view>
+      </view>
+
+
+
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <view class="weui-cells__title"> </view>
+      <!-- <button class="mini-btn" type="primary" size="mini" bindtap="wxopenAction">测面相</button> -->
+
+    </view>
+  </form>
+
+<!-- </view> -->
+
+<official-account></official-account>
