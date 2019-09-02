@@ -3,7 +3,7 @@ var uploadImage = require('../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
 var age = "";
 var beauty = "";
-Page({
+Page({//https://com-yangqihe-mobile-love.oss-cn-beijing.aliyuncs.com/wxapp/2019-09-01/156733773057085.png
   data: {
     motto: '检测人脸',
     userInfo: {},
@@ -16,7 +16,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '颜值分析小程序',
-      path: '/pages/face/face',
+      path: '/pages/face/faceIndex',
       success: function (res) {
         if (res.errMsg == 'shareAppMessage:ok') {
           wx.showToast({
@@ -67,7 +67,49 @@ Page({
           uploadImage(res.tempFilePaths[0], 'wxapp/' + nowTime + '/',
             function (result) {
               console.log("======上传成功图片地址为：", result);
-              wx.hideLoading();
+  
+             wx.request({//
+                url: "https://m.yangqihe.com/love-mobile-web/home/getFaceInfo",
+                data: {
+                  imageURL: result,
+                },
+                method: 'POST',
+                header: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (res) {
+                  if (res.statusCode == 200) {
+                   
+                    if (res.data.isSuccess) {
+                      
+                      //var jsonData = JSON.stringify(res.data.result);
+                      
+                      var object = JSON.parse(res.data.result);
+
+                      that.setData({
+                        ages: "年龄：" + " " + object.age,
+                        beautys: "魅力：" + " " + object.beauty
+                      });
+
+                      //console.log("###"+object);
+
+                    } else {
+                      wx.showModal({ content: res.data, showCancel: false });
+                    }
+                  } else {
+                    wx.showModal({ content: "连接服务器失败,请稍后重试", showCancel: false });
+                    console.log(res);
+                  }
+                },
+                fail: function (error) {
+                  wx.showModal({ content: "连接服务器失败,请稍后重试", showCancel: false });
+                  console.log(error);
+                },
+                complete: function () {
+                  wx.hideLoading();
+                }
+              });
+
             }, function (result) {
               console.log("======上传失败======", result);
               wx.hideLoading()
