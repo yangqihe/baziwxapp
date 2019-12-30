@@ -120,13 +120,9 @@ Page({
       title: '正在提交，请稍后...',
     });
     wx.request({//
-      url: "https://m.yangqihe.com/love-mobile-web/home/getBaZiInfo",//?xingming=test&riTime=1978-07-08&shiTime=12:01
+      url: "https://aifck.hongqiai.com/name/nameAnalyze",
       data: {
-        xingming: params.xingming,
-        gender: params.gender,
-        riTime: params.riTime,
-        shiTime: params.shiTime,
-        code: params.code,
+        name: params.xingming
       },
       method: 'POST',
       header: {
@@ -140,9 +136,9 @@ Page({
               key: 'info',
               data: res.data,
             });
-            var jsonData = JSON.stringify(res.data.result);
+            var jsonData = res.data.result;//JSON.stringify(res.data.result);
             wx.navigateTo({
-              url: 'baziPaipan?jsonData=' + jsonData,
+              url: 'nameDetail?jsonData=' + jsonData,
             });
           } else {
             wx.showModal({ content: res.data, showCancel: false });

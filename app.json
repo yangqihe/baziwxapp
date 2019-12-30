@@ -1,14 +1,18 @@
 {
   "pages": [
-    "pages/face/faceIndex",
-    
-    "pages/bazi/baziIndex",
-    "pages/bazi/baziPaipan",
-    
-    "pages/index/test/picker",
-    "pages/index/test/result1",
     "pages/index/index",
-    "pages/index/bazi/baziInfo"
+    "pages/face/faceIndex",
+    "pages/bazi/baziIndex",
+    "pages/bazi/hehunIndex",
+    "pages/bazi/hehunDetail",
+
+    "pages/bazi/baziPaipan",
+    "pages/index/bazi/baziInfo",
+
+    "pages/name/nameIndex",
+    "pages/name/nameDetail"
+    
+
   ],
   "window": {
     "backgroundTextStyle": "light",

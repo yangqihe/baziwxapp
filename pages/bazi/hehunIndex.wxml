@@ -1,0 +1,79 @@
+<!--pages/bazi/hehunIndex.wxml-->
+
+<form catchsubmit="formSubmit" catchreset="formReset">
+
+  <view class="page-section">
+    <!-- <view class="weui-cells__title">选择出生日期</view> -->
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">男方出生日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" name="manDate" value="{{manDate}}"  start="1900-00-01" end="2019-00-01" bindchange="bindManDateChange" >
+            <view class="weui-input">{{manDate}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">男方出生时辰</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="time" name="manTime" value="{{manTime}}" bindchange="bindManTimeChange">
+          <view class="weui-input">{{manTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+  </view>
+
+
+
+  <view class="page-section">
+    <!-- <view class="weui-cells__title">选择出生日期</view> -->
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">女方出生日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker mode="date" name="womenDate" value="{{womenDate}}" start="1900-00-01" end="2019-00-01" bindchange="bindWomenDateChange" >
+            <view class="weui-input">{{womenDate}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">女方出生时辰</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="time" name="womenTime" value="{{womenTime}}" bindchange="bindWomenTimeChange">
+          <view class="weui-input">{{womenTime}}</view>
+        </picker>
+      </view>
+    </view>
+
+  </view>
+
+
+  <view class="weui-cells__title"> </view>
+  <view class="weui-cells__title"> </view>
+  <view class="weui-cells__title"> </view>
+  <view class="weui-cells__title"> </view>
+
+  <view class="weui-cells weui-cells_after-title">
+    <view class="btn-area">
+      <button type="primary" formType="submit">提交</button>
+    </view>
+  </view>
+
+</form>

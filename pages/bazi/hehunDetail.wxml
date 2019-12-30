@@ -1,0 +1,6 @@
+<!--pages/bazi/hehunDetail.wxml-->
+<view>
+  <text>{{text}}</text>
+</view>
+
+<official-account></official-account>

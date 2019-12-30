@@ -3,7 +3,7 @@ var uploadImage = require('../../utils/uploadFile.js');
 var util = require('../../utils/util.js');
 var age = "";
 var beauty = "";
-Page({//https://com-yangqihe-mobile-love.oss-cn-beijing.aliyuncs.com/wxapp/2019-09-01/156733773057085.png
+Page({
   data: {
     motto: '检测人脸',
     userInfo: {},
@@ -50,111 +50,79 @@ Page({//https://com-yangqihe-mobile-love.oss-cn-beijing.aliyuncs.com/wxapp/2019-
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        //console.log( res )
+    
         that.setData({
           img: res.tempFilePaths[0],
           ages: "",
           beautys: "",
         });
 
-          wx.showLoading({
-            title: "魅力年龄分析中..."
-          });
+        wx.showLoading({
+          title: "魅力年龄分析中..."
+        });
 
-         var nowTime = util.formatTime(new Date());
+        var nowTime = util.formatTime(new Date());
 
-          uploadImage(res.tempFilePaths[0], 'wxapp/' + nowTime + '/',
-            function (result) {
-              console.log("======上传成功图片地址为：", result);
-  
-             wx.request({//
-                url: "https://m.yangqihe.com/love-mobile-web/home/getFaceInfo",
-                data: {
-                  imageURL: result,
-                },
-                method: 'POST',
-                header: {
-                  'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function (res) {
-                  if (res.statusCode == 200) {
-                   
-                    if (res.data.isSuccess) {
-                      
-                      //var jsonData = JSON.stringify(res.data.result);
-                      
-                      var object = JSON.parse(res.data.result);
-
-                      that.setData({
-                        ages: "年龄：" + " " + object.age,
-                        beautys: "魅力：" + " " + object.beauty
-                      });
-
-                      //console.log("###"+object);
-
-                    } else {
-                      wx.showModal({ content: res.data, showCancel: false });
-                    }
+        uploadImage(res.tempFilePaths[0], 'wxapp/' + nowTime + '/',
+          function (result) {
+            console.log("======上传成功图片地址为======", result);
+            wx.request({
+              url: 'https://m.yangqihe.com/love-mobile-web/home/getFaceInfo',
+              data: {
+                imageURL: result,
+              },
+              method: 'POST',
+              header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              success: function (res) {
+                if (res.statusCode == 200) {
+                  if (res.data.isSuccess) {
+                    var object = JSON.parse(res.data.result);
+                    console.log("###"+object);
+                    that.setData({
+                      ages: "年龄：" + " " + object.age,
+                      beautys: "魅力：" + " " + object.beauty
+                    });
                   } else {
-                    wx.showModal({ content: "连接服务器失败,请稍后重试", showCancel: false });
-                    console.log(res);
+                    wx.showModal({
+                      title: '',
+                      content: '分析失败',
+                      showCancel:false
+                    });
                   }
-                },
-                fail: function (error) {
-                  wx.showModal({ content: "连接服务器失败,请稍后重试", showCancel: false });
-                  console.log(error);
-                },
-                complete: function () {
-                  wx.hideLoading();
+                } else {
+                  wx.showModal({
+                    title: '',
+                    content: '连接服务器失败,请稍后重试',
+                    showCancel: false
+                  });
                 }
-              });
-
-            }, function (result) {
-              console.log("======上传失败======", result);
-              wx.hideLoading()
-            }
-          );
-
-          /*
-          wx.uploadFile({
-            url: 'https://www.xsshome.cn/xcx/upload',
-            filePath: res.tempFilePaths[0],
-            header: {
-              'content-type': 'multipart/form-data'
-            },
-            name: 'file',
-            formData: {
-              'user': 'test'
-            },
-            success: function (res) {
-              wx.hideLoading();
-              var data = res.data;
-              var str = JSON.parse(data);
-              console.log(str);
-              var age = str.age;
-              if (age != "") {
-                that.setData({
-                  ages: "年龄：" + " " + str.age.substring(0, 5),
-                  beautys: "魅力：" + " " + str.beauty.substring(0, 5)
-                })
-              } else {
-                that.setData({
-                  ages: 'Sorry 未能分析出人脸信息'
-                })
+              },
+              fail: function (error) {
+                //console.log(error);
+                //wx.showModal({ content: "分析失败", showCancel: false });
+                wx.showModal({
+                  title: '',
+                  content: '分析失败',
+                  showCancel: false
+                });
+              },
+              complete: function () {
+                wx.hideLoading();
               }
-            },
-            fail: function (res) {
-              wx.hideLoading();
-              console.log(res)
-              that.setData({
-                ages: '小程序离家出走了稍后再试'
-              })
-            }
-          })
-          */
+            });
 
-
+          }, function (result) {
+            //console.log("======上传失败======", result);
+            wx.showModal({
+              title: '',
+              content: '网络失败',
+              showCancel: false
+            });
+            wx.hideLoading()
+          }
+        );
 
       }
     })

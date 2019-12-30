@@ -1,0 +1,6 @@
+<!--pages/index/bazi/baziInfo.wxml-->
+<view>
+  <text >{{text}}</text>
+</view>
+
+<official-account></official-account>

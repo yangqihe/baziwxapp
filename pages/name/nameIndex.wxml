@@ -28,47 +28,9 @@
         </view>
       </view>
 
-<!-- bindchange="radioChange" -->
-      <view class="weui-cells weui-cells_after-title">
-        <radio-group name='gender'>
-          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}">
 
-            <view class="weui-cell__hd">
-              <radio value="{{item.value}}" checked="{{item.checked}}" />
-            </view>
-            <view class="weui-cell__bd">{{item.name}}</view>
-          </label>
-        </radio-group>
-      </view>
+    
 
-      <view class="page-section">
-        <!-- <view class="weui-cells__title">选择出生日期</view> -->
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-              <view class="weui-label">出生日期</view>
-            </view>
-            <view class="weui-cell__bd">
-              <picker mode="date" name="riTime" value="{{date}}" start="1900-00-01" end="2019-00-01" bindchange="bindDateChange" value="1990-06-06">
-                <view class="weui-input">{{date}}</view>
-              </picker>
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-          <view class="weui-cell__hd">
-            <view class="weui-label">出生时辰</view>
-          </view>
-          <view class="weui-cell__bd">
-            <picker mode="time" name="shiTime" value="{{time}}"  bindchange="bindTimeChange">
-              <view class="weui-input">{{time}}</view>
-            </picker>
-          </view>
-        </view>
-      </view>
 
 
       <view class="weui-cells__title"> </view>
